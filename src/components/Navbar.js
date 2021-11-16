@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useLogout } from '../hooks/useLogout';
 import { useAuthContext } from '../hooks/useAuthContext';
 import styles from '../components/Navbar.module.css';
@@ -6,11 +6,14 @@ import styles from '../components/Navbar.module.css';
 export default function Navbar() {
     const { logout } = useLogout();
     const { user } = useAuthContext();
+    const location = useLocation();
 
     return (
         <nav className={styles.navbar}>
             <ul>
-                <li className={styles.title}>myMoney</li>
+                <li className={styles.title}>
+                    {location.pathname === '/' ? 'myMoney' : <Link to="/">myMoney</Link>}
+                </li>
 
                 {!user && (
                     <>

@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Home from './pages/home/Home';
 import Login from './pages/login/Login';
 import Signup from './pages/signup/Signup';
+import NotFound from "./pages/notFound/NotFound";
 
 function App() {
   const { authIsReady, user } = useAuthContext();
@@ -25,6 +26,9 @@ function App() {
             <Route path="/signup">  
               {user && <Redirect to="/"/>}                                            
               {!user && <Signup />}  
+            </Route>
+            <Route path="/*">  
+              <NotFound />
             </Route>
           </Switch>
         </BrowserRouter>
